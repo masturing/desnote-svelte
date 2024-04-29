@@ -5,4 +5,14 @@ const loginSchema = z.object({
     password: z.string().min(4),
 })
 
-export { loginSchema };
+const Validation = {
+    email: (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    },
+    password: (password) => {
+        return password.length >= 4;
+    }
+}
+
+export { loginSchema, Validation };

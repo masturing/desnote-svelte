@@ -1,3 +1,5 @@
+import BASE_URL from "../configs/core";
+
 const RsAPI = {
     get: async ({
         url, param, token
@@ -15,7 +17,7 @@ const RsAPI = {
         return response.json();
     },
     post: async ({ url, data, token }) => {
-        const response = await fetch(url, {
+        const response = await fetch(BASE_URL + url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ const RsAPI = {
             credentials: 'same-origin',
             body: JSON.stringify(data),
         });
-        return response.json();
+        return JSON.parse(await response.text());
     },
     put: async ({ url, data, id, token }) => {
         const response = await fetch(`${url}/${id}`, {
