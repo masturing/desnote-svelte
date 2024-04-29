@@ -1,17 +1,22 @@
-
 <script>
     import * as Card from "$lib/components/ui/card";
     import * as Form from "$lib/components/ui/form";
     import { Input } from "$lib/components/ui/input/index.js";
     import { Label } from "$lib/components/ui/label/index.js";
     import { IconUser, IconFingerprint, IconLogin } from '@tabler/icons-svelte';
+	import RsAPI from "../../services/api_services";
     const formValues = {
         email: "",
         password: "",
     }
 
     async function submitForm() {
-       
+       RsAPI.post({
+        url: "/login",
+        data: formValues
+       }).then((res) => {
+        console.log(res);
+       })
     }
 </script>
 <main>
